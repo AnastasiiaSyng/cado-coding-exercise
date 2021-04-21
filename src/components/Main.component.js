@@ -15,17 +15,9 @@ const MainComponent = () => {
     })
 
     const options = [
-        {
-            label: 5, 
-            value: 5
-        },
-        {   
-            label: 10,
-            value: 10
-        },
-        {   label: 15,
-            value: 15
-        }   
+        {value: 5},
+        {value: 10},
+        {value: 15}   
     ]
 
     let { result, limit, offset, defaultLimit, defaultResult } = state;
@@ -68,10 +60,9 @@ const MainComponent = () => {
         })
     }
     const filterList = (e) => {
-        let updatedList = defaultResult
-        updatedList = updatedList.filter(item => {
+        const updatedList = defaultResult.filter(item => {
           return (
-            item.value.toLowerCase().includes(e.target.value.toLowerCase())
+            item.name.toLowerCase().includes(e.target.value.toLowerCase())
           )
         })
         setState(prevState => {
@@ -91,7 +82,7 @@ const MainComponent = () => {
                 <div>
                 <span>Show</span> <select value={defaultLimit} onChange={changeLimit}>
                     {options.map((option) => (
-                    <option value={option.value}>{option.label}</option>
+                    <option value={option.value}>{option.value}</option>
                     ))}
                 </select><span>entries</span><span>  </span>
                 <input 
@@ -106,11 +97,10 @@ const MainComponent = () => {
                     <p>RECORD</p>
                     <p>VALUE</p>
                 </div>
-                
                 {limetedResult.map(item => {
                     return (<div key={uuidv4()} className='result_container'>
-                                    <div>{item.name}</div>
-                                    <div>{item.value}</div>
+                                <div>{item.name}</div>
+                                <div>{item.value}</div>
                             </div>)
                 })}
             </div>
